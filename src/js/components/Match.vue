@@ -51,7 +51,7 @@
         },
         computed: {
             getConvertTime() {
-                return Math.floor(this.match.timeSec / 60) + ' : ' + this.match.timeSec % 60
+                return Math.floor(this.match.timeSec / 60).toString().padStart(2, "0") + ' : ' + (this.match.timeSec % 60).toString().padStart(2, "0")
             }
         },
         methods: {
