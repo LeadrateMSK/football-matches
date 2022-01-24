@@ -1,0 +1,14 @@
+.search {
+    color: $grey-dark;
+
+    &__form-wrap {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__count {
+        font-size: 14px;
+        line-height: 18px;
+        padding: 20px 0;
+    }
+}
