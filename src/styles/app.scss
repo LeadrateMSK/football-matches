@@ -4,8 +4,11 @@
 @import "includes";
 @import "base";
 
-@import "components/content";
-@import "components/footer";
 @import "components/grid";
-@import "components/navbar";
-@import "components/swiper";
+
+@import "components/search";
+@import "components/form";
+@import "components/reload";
+@import "components/matches";
+@import "components/notification";
+

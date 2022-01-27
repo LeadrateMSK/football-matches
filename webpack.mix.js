@@ -1,5 +1,5 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
+//const ESLintPlugin = require('eslint-webpack-plugin');
 let mix = require('laravel-mix');
 
 /* Больше настроек Webpack: https://laravel-mix.com/docs/6.0/extending-mix */
@@ -12,9 +12,9 @@ mix.webpackConfig({
         new CleanWebpackPlugin({
             cleanAfterEveryBuildPatterns: ['dist']
         }),
-        new ESLintPlugin({
-            fix: true,
-        }),
+        //new ESLintPlugin({
+        //    fix: true,
+        //}),
     ]
 });
 
@@ -23,13 +23,9 @@ mix.options({
 });
 
 mix.js('src/js/app.js', 'js')
-    //.vue()
+    .vue()
     .sass('src/styles/app.scss', 'css')
-    .sourceMaps()
-    //.eslint({
-    //    fix: true,
-    //    extensions: ['js']
-    //})
+    //.sourceMaps()
     .copyDirectory('src/*.html', 'dist')
     .copyDirectory('src/fonts', 'dist/fonts')
     .copyDirectory('src/img', 'dist/img')

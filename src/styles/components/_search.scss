@@ -1,0 +1,16 @@
+.search {
+    color: $grey-dark;
+
+    padding: 90px 0 200px;
+
+    &__form-wrap {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__count {
+        font-size: rem(14px);
+        line-height: 18px;
+        padding: 20px 0;
+    }
+}

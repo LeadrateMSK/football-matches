@@ -1,22 +1,21 @@
 module.exports = {
     "env": {
         "browser": true,
-        "es2021": true
+        "es6": true
     },
     "extends": [
-        "airbnb",
-        "eslint:recommended",
-        "plugin:vue/essential",
-        "plugin:@typescript-eslint/recommended"
+        "airbnb-base",
+        //"eslint:recommended",
+        //"plugin:vue/essential",
     ],
     "parserOptions": {
         "ecmaVersion": 13,
-        "parser": "@typescript-eslint/parser",
+        //"parser": "@typescript-eslint/parser",
         "sourceType": "module"
     },
     "plugins": [
-        "vue",
-        "@typescript-eslint"
+        //"vue",
+        //"@typescript-eslint"
     ],
     "rules": {
     }
