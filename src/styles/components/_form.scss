@@ -1,23 +1,20 @@
 .form {
     position: relative;
+    display: flex;
 
     &__icon {
         position: absolute;
         font-size: rem(19px);
-
         top: 17px;
         left: 16px;
-
         color: $grey-dark;
     }
 
     &__input {
         font-size: rem(16px);
         line-height: 21px;
-
         color: $grey-dark;
         border: 1px solid $grey-border;
-
         padding: 15px 150px 15px 44px;
 
         &:focus,
@@ -25,6 +22,118 @@
         &:active {
             border: 1px solid $green;
             box-shadow: 0px 0px 4px rgba(111, 207, 151, 0.5);
+        }
+    }
+
+    &__live {
+        text-align: center;
+        display: flex;
+        align-items: flex-end;
+        padding-left: 20px;
+
+        &-check {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            border: 0;
+            padding: 0;
+            white-space: nowrap;
+            -webkit-clip-path: inset(100%);
+            clip-path: inset(100%);
+            clip: rect(0 0 0 0);
+            overflow: hidden;
+
+            + .form__live-button {
+                position: relative;
+                display: block;
+                cursor: pointer;
+                user-select: none;
+                outline: 0;
+
+                width: 57px;
+                height: 31px;
+
+                &:after {
+                    content: "";
+                    position: relative;
+                    display: block;
+                    width: 50%;
+                    height: 100%;
+                    top: 1px;
+                    left: 0;
+                }
+
+                &:before {
+                    content: "Live";
+                    position: absolute;
+
+                    text-transform: uppercase;
+                    color: $grey-dark;
+                    font-size: rem(16px);
+                    line-height: 21px;
+
+                    right: -40px;
+                    top: 5px;
+                    
+                    transition: all .4s ease;
+                }
+            }
+
+            &:checked + .form__live-button:after {
+                left: 50%;
+            }
+        }
+    }
+}
+
+.form__live-check {
+    + .form__live-button {
+        background: $grey-border;
+        border-radius: 40px;
+        padding: 2px;
+        transition: all .4s ease;
+
+        &:after {
+            width: 25px;
+            height: 25px;
+            background: $white;
+            box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+            border-radius: 40px;
+            transition: all .4s ease;
+        }
+
+        &:focus,
+        &:focus-visible,
+        &:active {
+            background: rgba(214, 62, 71, 0.5);
+
+            &:after {
+                width: 34px;
+            }
+        }
+    }
+
+    &:checked + .form__live-button {
+        background: $red-toggle;
+
+        &:before {
+            color: $red-toggle;
+        }
+
+        &:focus,
+        &:focus-visible,
+        &:active {
+            background: rgba(214, 62, 71, 0.5);
+            box-shadow: none;
+
+            &:after {
+                margin-left: -9px;
+            }
+
+            &:before {
+                color: $grey-dark;
+            }
         }
     }
 }

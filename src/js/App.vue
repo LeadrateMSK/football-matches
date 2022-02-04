@@ -7,6 +7,16 @@
                 <div class="search__form form">
                     <span class="iconify form__icon" data-icon="uil:search"></span>
                     <input v-model="query_opponents" class="form__input" type="text" placeholder="Поиск по оппонентам...">
+
+                    <div class="form__live">
+                        <div class="form__live-wrap">
+                            <input class="form__live-check" type="checkbox" name="live-toggle" id="live-toggle" tabindex="0" @click="toggleCheck" v-model="live">
+                            <label class="form__live-button" for="live-toggle" tabindex="0"></label>                            
+                        </div>
+
+                    </div>
+                    <!-- /.form__live -->
+
                 </div>
                 <!-- /.search__form -->
 
@@ -20,12 +30,6 @@
             </div>
             <!-- /.search__wrap -->
 
-            <div v-if="filteredMatches.length" class="search__count count">
-                <p class="count__number">Всего матчей: {{ countFilteredMatches }}</p>
-            </div>
-            <!-- /.search__count -->
-                
-
             <div class="search__matches matches">
                 <div v-if="matches.length === 0" class="notification">
                     <Loading/>
@@ -35,8 +39,25 @@
                     <NotFound/>
                 </div>
 
-                <ul class="matches__list" v-else>            
-                    <Match v-for="match in filteredMatches" :key="match.constSportEventId" :match="match"/>
+                <ul v-else class="matches__list">  
+
+                    <li class="matches__item matches__item--title">
+                        <span v-if="this.live" class="matches__timing">Время</span>
+                        <span v-else class="matches__timing disable">Начало</span>
+
+                        <div class="matches__options">
+
+                            <span v-if="live" class="matches__stream">Трансляция</span>
+
+                            <div class="matches__coeff">
+                                <span class="matches__coeff-value">П1</span>
+                                <span class="matches__coeff-value--x">Х</span>
+                                <span class="matches__coeff-value">П2</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <Match v-for="match in filteredMatches" :key="match.constSportEventId" :match="match" :live="live"/>
                 </ul>   
 
             </div>
@@ -58,13 +79,12 @@
         name: 'App',
         data(){
             return {
-                query_opponents: "",
                 matches: [],
+                query_opponents: '',
+                live: '',
             }
         },
-
         components: { Match, Loading, NotFound },
-
         computed: {
             filteredMatches() {
                 if(this.query_opponents.length) {
@@ -80,22 +100,21 @@
 
                 return this.matches
             },
-
-            countFilteredMatches(){
-                return this.filteredMatches.length
-            }
         },
-
         methods: {
             fillMatches() {
                 this.matches = []
-                getMatches().then(matches => this.matches = matches)
-            }
-            
+                getMatches(this.live).then((matches) => {this.matches = matches})
+            },
+        
+            toggleCheck() {            
+                this.live ? (this.live = '') : (this.live = 'live');
+                this.fillMatches();
+            }            
         },
 
         created(){
-            getMatches().then(matches => this.matches = matches)
+            getMatches(this.live).then(matches => this.matches = matches)
         }
 
     }

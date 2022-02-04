@@ -3,6 +3,8 @@
     &__list {
         display: flex;
         flex-direction: column;
+
+        padding-top: 40px;
     }
 
     &__item {
@@ -10,11 +12,41 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+        color: $black;
 
         background-color: $grey-bg;
 
         padding: 15px;
         margin-bottom: 10px;
+
+        &--title {
+            background-color: $white;
+            padding: 16px 16px 16px 0;
+        }
+    }
+
+    &__options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__coeff {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        font-weight: bold;
+        font-size: rem(20px);
+        line-height: 26px;
+        text-transform: uppercase;
+        color: $grey-dark;
+
+        min-width: 180px;
+
+        &--result {
+            color: $black;
+        }
     }
 
     &__time {
@@ -64,6 +96,13 @@
         padding: 0 30px;
 
         min-width: 125px;
+    }
+
+    &__stream {
+        width: 100px;
+        margin-right: 56px;
+
+        white-space: nowrap;
     }
 
     &__in-stream {
