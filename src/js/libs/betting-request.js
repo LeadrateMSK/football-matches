@@ -2,7 +2,10 @@ import './betting';
 
 const betting = new Betting();
 
-export const getMatches = () => new Promise((resolve, reject) => {
+export const getMatches = (live) => new Promise((resolve, reject) => {
+  
+  // const betting = new Betting(live);
+
   betting
     .auth({
       client_id: 'marketing-1a49fe24c1af4278c541a52a3c2ffca7',
@@ -14,7 +17,8 @@ export const getMatches = () => new Promise((resolve, reject) => {
         .get_matches({
           lng: 'ru',
           sportids: '1',
-        }, 'live')
+          oddsIds: '1, 2, 3',
+        }, live)
         .then((matches) => resolve(matches.items))
         .catch((err) => reject(err));
     })
